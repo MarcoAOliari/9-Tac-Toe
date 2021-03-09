@@ -61,7 +61,7 @@ class tabuleiro:
             elif (self.tab[0][1] == self.tab[1][1]) and (self.tab[0][1] == self.tab[2][1]) and self.tab[0][1] != -1:
                 self.vitoria = self.tab[0][1]
                 return self.tab[0][1]
-        
+                        
         return self.getVitoria()
 
     def getValor(self, coordenadas):

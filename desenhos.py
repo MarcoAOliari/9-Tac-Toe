@@ -20,10 +20,10 @@ def x(win, comprimento, altura, coeficientes, cor):
 def o(win, comprimento, altura, coeficientes, cor):
     pygame.draw.circle(win, cor, (int((1+2*coeficientes[0])*comprimento/18), int((1+2*coeficientes[1])*altura/18)), int(comprimento/18 - 3), 3)
 
-def posicao(win, comprimento, altura, coordenadas):
+def posicao(comprimento, altura, coordenadas):
     return ((int(9*coordenadas[0]/altura), int(9*coordenadas[1]/comprimento)))
 
-def desenhaLinhas(win, comprimento, altura):
+def desenha_linhas(win, comprimento, altura):
     linhasPrincipais(win, comprimento, altura)
     pygame.draw.rect(win, (255, 255, 255), (0, 0, comprimento, altura), 5)
 

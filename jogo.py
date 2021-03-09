@@ -11,11 +11,11 @@ def main():
     altura = 630
     win = pygame.display.set_mode((comprimento,altura))
     pos = anterior = (-1, -1)
-    jogadaValida = True
+    jogada_valida = True
 
     cont = 0
 
-    desenhos.desenhaLinhas(win, comprimento, altura)
+    desenhos.desenha_linhas(win, comprimento, altura)
 
     run = True
 
@@ -26,13 +26,13 @@ def main():
 
         if pygame.mouse.get_pressed()[0] == 1:
             xy = pygame.mouse.get_pos()
-            if jogadaValida == True:
+            if jogada_valida:
                 anterior = pos
-                jogadaValida = False
-            pos = desenhos.posicao(win, comprimento, altura, xy)
+                jogada_valida = False
+            pos = desenhos.posicao(comprimento, altura, xy)
         
             if jogo.marcaTabuleiro(cont%2, pos, anterior):
-                desenhos.desenhaLinhas(win, comprimento, altura)
+                desenhos.desenha_linhas(win, comprimento, altura)
                 if cont%2 == 0:
                     desenhos.o(win, comprimento, altura, pos, (0, 0, 255))
                 else:
@@ -40,7 +40,7 @@ def main():
 
                 cont += 1
                 desenhos.destacaJogo(win, comprimento, altura, pos)
-                jogadaValida = True
+                jogada_valida = True
 
             for i in range(3):
                 for j in range(3):
