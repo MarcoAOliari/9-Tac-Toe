@@ -19,6 +19,7 @@ def main():
 
     run = True
 
+    # loop inicial
     while run:
 
         pygame.time.delay(100)
