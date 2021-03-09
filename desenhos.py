@@ -1,5 +1,5 @@
 import pygame
-# import draw
+# import draw (comentario teste)
 
 def desenhaJogoIndividual(win, cini, cfim, aini, afim, cor):
     pygame.draw.line(win, cor, (cini + int((cfim - cini)/3), aini), (cini + int((cfim - cini)/3), afim), 2)
