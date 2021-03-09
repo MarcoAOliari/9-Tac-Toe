@@ -8,20 +8,20 @@ class noveDaVelha:
         self.tabmaior = tabuleiro()
         self.inicio = 0
         
-    def marcaTabuleiro(self, id, coordenadas, jogadaAnterior):
+    def marcaTabuleiro(self, id_tab, coordenadas, jogadaAnterior):
         if self.unidadeTerminada(((jogadaAnterior[0] - jogadaAnterior[0]//3*3), (jogadaAnterior[1] - jogadaAnterior[1]//3*3)), 0):
             if not self.unidadeTerminada(coordenadas, 1):
-                return self.tabuleiros[int(coordenadas[1]/3)][int(coordenadas[0]/3)].marcarPosicao(id, (int(coordenadas[1]%3), int(coordenadas[0]%3)))
+                return self.tabuleiros[int(coordenadas[1]/3)][int(coordenadas[0]/3)].marcarPosicao(id_tab, (int(coordenadas[1]%3), int(coordenadas[0]%3)))
             else:
                 return False
         elif (self.unidadeCorreta(coordenadas, jogadaAnterior) and not self.unidadeTerminada(coordenadas, 1)) or self.primeiraJogada():
-            return self.tabuleiros[int(coordenadas[1]/3)][int(coordenadas[0]/3)].marcarPosicao(id, (int(coordenadas[1]%3), int(coordenadas[0]%3)))
+            return self.tabuleiros[int(coordenadas[1]/3)][int(coordenadas[0]/3)].marcarPosicao(id_tab, (int(coordenadas[1]%3), int(coordenadas[0]%3)))
     
     def getValor(self, coordenadas):
         return self.tabuleiros[int(coordenadas[1]/3)][int(coordenadas[0]/3)].getValor((int(coordenadas[0]%3), int(coordenadas[1]%3)))
 
-    def marcaTabuleiroMaior(self, id, coordenadas):
-        return self.tabmaior.marcarPosicao(id, coordenadas)
+    def marcaTabuleiroMaior(self, id_tab, coordenadas):
+        return self.tabmaior.marcarPosicao(id_tab, coordenadas)
 
     def unidadeCorreta(self, pos, jogadaAnterior):
         if pos[0]//3 == (jogadaAnterior[0] - jogadaAnterior[0]//3*3) and pos[1]//3 == (jogadaAnterior[1] - jogadaAnterior[1]//3*3):
@@ -36,13 +36,13 @@ class noveDaVelha:
         else:
             return False
     
-    def unidadeTerminada(self, coordenadas, id):
-        if id == 0:
+    def unidadeTerminada(self, coordenadas, idu):
+        if idu == 0:
             if self.tabmaior.tab[coordenadas[1]][coordenadas[0]] != -1:
                 return True
             else:
                 return False
-        if id == 1:
+        if idu == 1:
             if self.tabmaior.tab[coordenadas[1]//3][coordenadas[0]//3] != -1:
                 return True
             else:
@@ -53,18 +53,18 @@ class noveDaVelha:
         for i in range(3):
             for j in range(3):
                 if self.tabuleiros[i][j].jogadas == 9 or self.tabuleiros[i][j].vitoria != -1:
-                   cont += 1
+                    cont += 1
 
-        return True if cont == 9 else False 
+        return cont == 9
 
     def contaResultado(self):
-        o = 0
-        x = 0
+        o_counter = 0
+        x_counter = 0
         for i in range(3):
             for j in range(3):
                 if self.tabmaior.tab[i][j] == 0:
-                    o += 1
+                    o_counter += 1
                 else:
-                    x += 1
+                    x_counter += 1
         
-        return 0 if o > x else 1
+        return 0 if o_counter > x_counter else 1
